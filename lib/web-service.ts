@@ -26,7 +26,7 @@ export interface WebServiceOptions {
      * 
      * @default 8080
      */
-    readonly containerPort: number;
+    readonly containerPort?: number;
 }
 
 export class WebService extends Construct {
