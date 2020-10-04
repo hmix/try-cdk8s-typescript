@@ -1,3 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Placeholder Empty 1`] = `Array []`;
+exports[`Placeholder Empty 1`] = `
+Array [
+  Object {
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": Object {
+      "name": "test-chart-hello-service-522fadb3",
+    },
+    "spec": Object {
+      "ports": Array [
+        Object {
+          "port": 80,
+          "targetPort": 8080,
+        },
+      ],
+      "selector": Object {
+        "app": "testcharthello9DA12FC8",
+      },
+      "type": "LoadBalancer",
+    },
+  },
+  Object {
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": Object {
+      "name": "test-chart-hello-deployment-3f8430b9",
+    },
+    "spec": Object {
+      "replicas": 10,
+      "selector": Object {
+        "matchLabels": Object {
+          "app": "testcharthello9DA12FC8",
+        },
+      },
+      "template": Object {
+        "metadata": Object {
+          "labels": Object {
+            "app": "testcharthello9DA12FC8",
+          },
+        },
+        "spec": Object {
+          "containers": Array [
+            Object {
+              "image": "paulbouwer/hello-kubernetes:1.7",
+              "name": "app",
+              "ports": Array [
+                Object {
+                  "containerPort": 8080,
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+  },
+  Object {
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": Object {
+      "name": "test-chart-ghost-service-a3a9de51",
+    },
+    "spec": Object {
+      "ports": Array [
+        Object {
+          "port": 80,
+          "targetPort": 4666,
+        },
+      ],
+      "selector": Object {
+        "app": "testchartghostEC535E90",
+      },
+      "type": "LoadBalancer",
+    },
+  },
+  Object {
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": Object {
+      "name": "test-chart-ghost-deployment-e3f61ada",
+    },
+    "spec": Object {
+      "replicas": 1,
+      "selector": Object {
+        "matchLabels": Object {
+          "app": "testchartghostEC535E90",
+        },
+      },
+      "template": Object {
+        "metadata": Object {
+          "labels": Object {
+            "app": "testchartghostEC535E90",
+          },
+        },
+        "spec": Object {
+          "containers": Array [
+            Object {
+              "image": "ghost",
+              "name": "app",
+              "ports": Array [
+                Object {
+                  "containerPort": 4666,
+                },
+              ],
+            },
+          ],
+        },
+      },
+    },
+  },
+]
+`;
