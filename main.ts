@@ -1,42 +1,19 @@
 import { Construct } from 'constructs';
 import { App, Chart } from 'cdk8s';
-// imported constructs
-import { Deployment, Service, IntOrString } from './imports/k8s';
+import { WebService } from './lib/web-service';
 
 export class MyChart extends Chart {
-  constructor(scope: Construct, name: string) {
-    super(scope, name);
+  constructor(scope: Construct, ns: string) {
+    super(scope, ns);
 
-    // define resources here
-    const hellolabel = { app: 'try-cdk8s-typescript'};
-
-    new Service(this, 'myservice', {
-      spec: {
-        type: 'LoadBalancer',
-        ports: [{ port: 80, targetPort: IntOrString.fromNumber(8080)}],
-        selector: hellolabel,
-      }
+    new WebService(this, 'hello', {
+      image: 'paulbouwer/hello-kubernetes:1.7',
+      replicas: 10
     });
 
-    new Deployment(this, 'mydeployment', {
-      spec: {
-        replicas: 2,
-        selector: {
-          matchLabels: hellolabel
-        },
-        template: {
-          metadata: { labels: hellolabel },
-          spec: {
-            containers: [
-              {
-                name: 'hello-kubernetes',
-                image: 'paulbouwer/hello-kubernetes:1.7',
-                ports: [{ containerPort: 8080 }]
-              }
-            ]
-          }
-        }
-      }
+    new WebService(this, 'ghost', {
+      image: 'ghost',
+      containerPort: 4666
     });
 
   }
