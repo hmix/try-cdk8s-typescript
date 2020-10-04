@@ -1,7 +1,7 @@
 import { Construct } from 'constructs';
 import { App, Chart } from 'cdk8s';
 // imported constructs
-import { Deployment, Service, IntOrString, Namespace } from './imports/k8s';
+import { Deployment, Service, IntOrString } from './imports/k8s';
 
 export class MyChart extends Chart {
   constructor(scope: Construct, name: string) {
@@ -10,11 +10,6 @@ export class MyChart extends Chart {
     // define resources here
     const hellolabel = { app: 'try-cdk8s-typescript'};
 
-    //const helloworldnamespace =
-    new Namespace(this, 'namespace-helloworld', {
-    });
-
-    //const myservice = 
     new Service(this, 'myservice', {
       spec: {
         type: 'LoadBalancer',
@@ -23,7 +18,6 @@ export class MyChart extends Chart {
       }
     });
 
-    // const mydeployment =
     new Deployment(this, 'mydeployment', {
       spec: {
         replicas: 2,
